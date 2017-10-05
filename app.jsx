@@ -71,12 +71,12 @@ class Model {
     </table>
  
       <h1>Scoreboard</h1>
-      <Stopwatch />
+      
     </div>
   );
 }
 
-
+/*
 
 class Stopwatch extends React.component {
     constructor(props){
@@ -144,7 +144,7 @@ class Stopwatch extends React.component {
     )
   }
 };
-
+*/
 
 
 const Counter = ({player}) => {
