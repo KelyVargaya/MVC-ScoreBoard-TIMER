@@ -53,7 +53,6 @@ class Model {
  
 }
 
-
  const Header = ({model}) => {
   return (
     <div className = "header">
@@ -109,7 +108,9 @@ class Stopwatch extends React.Component {
     return (
       <div className='stopwatch'>
         <h2>STOPWATCH</h2>
-        <div className='stopwatch-time'>{this.state.timekeeper}</div>
+        <div className='stopwatch-time'>
+          {this.state.timekeeper}
+        </div>
         <button onClick={()=>this.onStop()}>Stop</button>
         <button onClick={()=>this.onStart()}>Start</button>
         <button onClick={()=>this.onReset()}>reset</button>
@@ -117,7 +118,6 @@ class Stopwatch extends React.Component {
     );
   }
 }
-
 
 const Counter = ({player}) => {
   return (
