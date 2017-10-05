@@ -53,7 +53,6 @@ class Model {
  
 }
 
-
  const Header = ({model}) => {
   return (
     <div className = "header">
@@ -77,75 +76,48 @@ class Model {
 }
 
 
-
-class Stopwatch extends React.component {
-    constructor(props){
-      super(props);
-
-        this.state ={
-      running: false,
-      previouseTime: 0,
-      elapsedTime: 0,
-        }
+class Stopwatch extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timekeeper: 0,
+      //date: new Date()
+     
     }
-
-  componentDidMount () {
-    this.interval = setInterval(this.onTick);
   }
 
-  componentWillUnmount () {
-    clearInterval(this.interval);
+  onStart() {
+    this.timer = setInterval(() => {
+      this.setState((previous)=>({
+        timekeeper: previous.timekeeper + 1
+      }));
+    }, 1000);
   }
-
-
-  onStart () {
+  onReset(){
     this.setState({
-      running: true,
-      previousTime: Date.now(),
+      timekeeper: 0
     });
   }
-
   onStop () {
-    this.setState({
-      running: false,
-    });
+    clearInterval(this.timer);
+  
   }
-
-  onReset() {
-    this.setState({
-      elapsedTime: 0,
-      previousTime: Date.now(),
-    });
-  }
-
-  onTick() {
-    if (this.state.running) {
-      var now = Date.now();
-      this.setState({
-        elapsedTime: this.state.elapsedTime + (now - this.state.previousTime),
-        previousTime: Date.now(),
-      });
-    }
-  }
-
-  render () {
-    var seconds = Math.floor(this.state.elapsedTime / 1000);
+    
+  render() {
+    //var seconds = Math.floor(this.state.elapsedTime / 1000);
     return (
-      <div className="stopwatch" >
-        <h2>Stopwatch</h2>
-        <div className="stopwatch-time"> {seconds} </div>
-        { this.state.running ?
-          <button onClick={this.onStop}>Stop</button>
-          :
-          <button onClick={this.onStart}>Start</button>
-        }
-        <button onClick={this.onReset}>Reset</button>
+      <div className='stopwatch'>
+        <h2>STOPWATCH</h2>
+        <div className='stopwatch-time'>
+          {this.state.timekeeper}
+        </div>
+        <button onClick={()=>this.onStop()}>Stop</button>
+        <button onClick={()=>this.onStart()}>Start</button>
+        <button onClick={()=>this.onReset()}>reset</button>
       </div>
-    )
+    );
   }
-};
-
-
+}
 
 const Counter = ({player}) => {
   return (
